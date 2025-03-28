@@ -1,0 +1,42 @@
+<div class="twitter-clone">
+  <h1>Twitter Clone</h1>
+  
+  <!-- User Selector Component -->
+  <app-user-selector (userSelected)="onUserSelected($event)"></app-user-selector>
+  
+  <div>
+    <label for="user-select">Select User:</label>
+    <select id="user-select" [(ngModel)]="selectedUserId" (change)="onUserChange(selectedUserId)">
+      <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
+    </select>
+  </div>
+
+  <div class="content">
+    <!-- Post List Component -->
+    <app-post-list 
+      [userId]="selectedUserId" 
+      (postSelected)="onPostSelected($event)">
+    </app-post-list>
+    
+    <!-- Comment List Component -->
+    <app-comment-list [postId]="selectedPostId || 0"></app-comment-list>
+  </div>
+
+  <div *ngIf="posts.length > 0">
+    <h3>Posts</h3>
+    <ul>
+      <li *ngFor="let post of posts" (click)="onPostChange(post.id)" [class.selected]="post.id === selectedPostId">
+        {{ post.title }}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="comments.length > 0">
+    <h3>Comments</h3>
+    <ul>
+      <li *ngFor="let comment of comments">
+        {{ comment.body }}
+      </li>
+    </ul>
+  </div>
+</div>

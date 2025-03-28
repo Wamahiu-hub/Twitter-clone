@@ -1,0 +1,14 @@
+.user-select {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 200px;
+    background-color: #f5f8fa;
+  }
+  
+  .user-select:focus {
+    outline: none;
+    border-color: #1da1f2;
+  }

@@ -1,0 +1,5 @@
+<div class="post-list">
+    <div *ngFor="let post of posts" class="post" (click)="onPostClick(post.id)">
+      <div class="post-body">{{post.body}}</div>
+    </div>
+  </div>

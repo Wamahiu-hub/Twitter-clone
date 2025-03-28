@@ -1,0 +1,36 @@
+.comment-list {
+    margin-top: 30px;
+  }
+  
+  .comment-list h3 {
+    font-size: 20px;
+    color: #14171a;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e1e8ed;
+  }
+  
+  .comment {
+    background-color: #f5f8fa;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-name {
+    font-weight: bold;
+    color: #14171a;
+    margin-bottom: 5px;
+  }
+  
+  .comment-email {
+    font-size: 14px;
+    color: #657786;
+    margin-bottom: 8px;
+  }
+  
+  .comment-body {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #14171a;
+  }

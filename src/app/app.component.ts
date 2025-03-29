@@ -23,8 +23,9 @@ export class AppComponent implements OnInit {
   title(title: any) {
     throw new Error('Method not implemented.');
   }
-onPostSelected($event: number) {
-throw new Error('Method not implemented.');
+onPostSelected(postId: number): void {
+  console.log('Post selected in AppComponent:', postId); // Debugging log
+  this.onPostChange(postId);
 }
 onUserSelected($event: number) {
 throw new Error('Method not implemented.');
@@ -49,21 +50,16 @@ throw new Error('Method not implemented.');
   }
 
   onUserChange(userId: number): void {
-    this.selectedUserId = userId;
-    this.apiService.getPostsByUser(userId).subscribe((data) => {
-      this.posts = data;
-      if (this.posts.length > 0) {
-        this.onPostChange(this.posts[0].id); // Load first post's comments
-      } else {
-        this.comments = [];
-      }
-    });
+    if (this.selectedUserId !== userId) {
+      this.selectedUserId = userId;
+      this.selectedPostId = null; // Reset selected post
+    }
   }
 
   onPostChange(postId: number): void {
-    this.selectedPostId = postId;
-    this.apiService.getCommentsByPost(postId).subscribe((data) => {
-      this.comments = data;
-    });
+    if (this.selectedPostId !== postId) {
+      this.selectedPostId = postId;
+      console.log('Selected Post ID:', this.selectedPostId); // Debugging log
+    }
   }
 }

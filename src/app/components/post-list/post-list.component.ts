@@ -15,23 +15,26 @@ export class PostListComponent {
   @Input() userId: number = 1;
   @Output() postSelected = new EventEmitter<number>();
   posts: Post[] = [];
+  private previousUserId: number | null = null;
 
   constructor(private postService: PostService) {}
 
   ngOnChanges() {
-    this.loadPosts();
+    if (this.userId !== this.previousUserId) {
+      this.previousUserId = this.userId;
+      this.loadPosts();
+    }
   }
 
   loadPosts() {
     this.postService.getPostsByUser(this.userId).subscribe(posts => {
       this.posts = posts;
-      if (posts.length > 0) {
-        this.postSelected.emit(posts[0].id);
-      }
+      // Remove redundant emission of the first post's ID
     });
   }
 
   onPostClick(postId: number) {
+    console.log('Post clicked in PostListComponent:', postId); // Debugging log
     this.postSelected.emit(postId);
   }
 }
